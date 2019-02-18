@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
 			return res.status(401).send({ error: 'Error' });
 
 		if(decoded.roles !== "admin" && userId !== decoded.id)
-			return res.status(403).send({ error: 'Acesso negado' });
+			return res.status(403).send({ error: 'Acesso restrito a administradores' });
 
 		req.userId = decoded.id;
 		return next();
