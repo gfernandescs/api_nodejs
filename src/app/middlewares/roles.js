@@ -1,10 +1,10 @@
-const jwt 	     = require('jsonwebtoken');
+const jwt 	 = require('jsonwebtoken');
 const authConfig = require('../../config/auth.json');
 
 module.exports = (req, res, next) => {
 
 	var authHeader = req.headers.authorization;
-	var userId 	   = req.params.userId;	 
+	var userId     = req.params.userId;	 
 
 	if(!authHeader)
 		return res.status(401).send({ error: 'Token não informado'});
