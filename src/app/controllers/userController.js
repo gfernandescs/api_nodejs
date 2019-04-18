@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 	}catch (err){
 		return res.status(400).send({ error: 'Erro ao listar usuários' });
 	}
-})
+});
 
 //Show 
 router.get('/:userId', async (req, res) => {
