@@ -3,13 +3,13 @@ const authConfig = require('../../config/auth.json');
 
 module.exports = (req, res, next) => {
 
-	var authHeader = req.headers.authorization;
+	let authHeader = req.headers.authorization;
 
 	if(!authHeader)
 		return res.status(401).send({ error: 'Token não informado'});
 
-	var parts = authHeader.split(' ');
-	var [ scheme, token ] = parts;
+	let parts = authHeader.split(' ');
+	let [ scheme, token ] = parts;
 
 	jwt.verify(token, authConfig.secret, (err, decoded) =>{
 

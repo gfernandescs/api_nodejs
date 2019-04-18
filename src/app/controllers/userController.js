@@ -13,7 +13,7 @@ router.use(authMiddleware);
 router.get('/', async (req, res) => {
 	try{
 
-		var users = await User.find();
+		let users = await User.find();
 
 		return res.send({ users });
 
@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 router.get('/:userId', async (req, res) => {
 	try{
 
-		var user = await User.findById(req.params.userId).populate('user');
+		let user = await User.findById(req.params.userId).populate('user');
 
 		if(!user)
 			return res.status(400).send({ error: 'usuário não existe' });
@@ -43,13 +43,13 @@ router.get('/:userId', async (req, res) => {
 router.put('/:userId', rolesMiddleware, async (req, res) => {
 	try{
 	
-		var email = req.body.email;
+		let email = req.body.email;
 		//Verifica se email já existe
 		if(await User.findOne({ email }))
 			return res.status(400).send({ error: 'Email já existe'});
 
 
-		var user  = await User.findByIdAndUpdate(req.params.userId, req.body, {new: true});
+		let user  = await User.findByIdAndUpdate(req.params.userId, req.body, {new: true});
 
 		return res.send({ user });
 

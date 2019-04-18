@@ -39,14 +39,14 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre('save', async function (next){
-	var hash = await bcrypt.hash(this.password, 10);
+	let hash = await bcrypt.hash(this.password, 10);
 	this.password = hash;
 
 	next();
 });
 
 UserSchema.pre('findOneAndUpdate', async function(next) {
-	var hash = await bcrypt.hash(this._update.password, 10);
+	let hash = await bcrypt.hash(this._update.password, 10);
 
 	this._update.password  = hash;
 	this._update.updatedAt = new Date(); 

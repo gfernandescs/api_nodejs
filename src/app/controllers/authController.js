@@ -17,12 +17,12 @@ function generateToken(params = {}){
 //Rota para registrar um novo usuário
 router.post('/register', async(req, res) =>{
 
-	var {email} = req.body;
+	let {email} = req.body;
 	try{
 		if(await User.findOne({ email }))
 			return res.status(400).send({ error: 'Email já existe'});
 
-		var user = await User.create(req.body);
+		let user = await User.create(req.body);
 
 		user.password = undefined;
 
@@ -38,8 +38,8 @@ router.post('/register', async(req, res) =>{
 
 //Rota para autenticar usuário
 router.post('/authenticate', async (req, res) =>{
-	var {email, password } = req.body;
-	var user = await User.findOne({ email }).select('+password');
+	let {email, password } = req.body;
+	let user = await User.findOne({ email }).select('+password');
 
 	if(!user)
 		return res.status(400).send({error: 'Usuário não encontrado'});
